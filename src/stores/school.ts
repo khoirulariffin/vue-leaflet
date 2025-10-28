@@ -20,6 +20,8 @@ export const useSchoolStore = defineStore("school", () => {
     error.value = null;
 
     try {
+      console.log("window.location.origin", window.location.origin);
+
       const baseURL = window.location.origin;
       const response = await fetch(`${baseURL}/#/school_data.json`);
       if (!response.ok) {
