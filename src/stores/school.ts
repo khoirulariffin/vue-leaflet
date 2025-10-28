@@ -20,7 +20,8 @@ export const useSchoolStore = defineStore("school", () => {
     error.value = null;
 
     try {
-      const response = await fetch("/school_data.json");
+      const baseURL = window.location.origin;
+      const response = await fetch(`${baseURL}/school_data.json`);
       if (!response.ok) {
         throw new Error("Failed to load school data");
       }
