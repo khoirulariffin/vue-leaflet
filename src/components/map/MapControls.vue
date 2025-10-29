@@ -47,6 +47,24 @@
               Tambah Area
             </button>
 
+            <!-- Tambah Dapur Button -->
+            <button
+              @click="handleTambahDapur(close)"
+              class="btn btn-warning btn-block justify-start gap-3"
+            >
+              <span class="text-lg">🍳</span>
+              Tambah Dapur
+            </button>
+
+            <!-- Rekomendasi Dapur Button -->
+            <button
+              @click="handleRekomendasiDapur(close)"
+              class="btn btn-success btn-block justify-start gap-3"
+            >
+              <span class="text-lg">🎯</span>
+              Rekomendasi Dapur
+            </button>
+
             <div class="divider my-2">Filter Data</div>
 
             <!-- Filter Province -->
@@ -78,7 +96,7 @@
             </div>
 
             <!-- Filter City -->
-            <div class="form-control">
+            <!-- <div class="form-control">
               <label class="label">
                 <span class="label-text font-semibold">Kab/Kota</span>
                 <button
@@ -104,10 +122,10 @@
                   {{ city.name }}
                 </option>
               </select>
-            </div>
+            </div> -->
 
             <!-- Filter District -->
-            <div class="form-control">
+            <!-- <div class="form-control">
               <label class="label">
                 <span class="label-text font-semibold">Kecamatan</span>
                 <button
@@ -134,7 +152,7 @@
                   {{ district.name }}
                 </option>
               </select>
-            </div>
+            </div> -->
 
             <!-- Apply Filter Button -->
             <div class="pt-3 border-t border-base-300 flex gap-2">
@@ -192,6 +210,8 @@ interface Filters {
 
 const emit = defineEmits<{
   "tambah-area": [];
+  "tambah-dapur": [];
+  "rekomendasi-dapur": [];
   "apply-filters": [filters: Filters];
 }>();
 
@@ -228,6 +248,16 @@ const handleTambahArea = (close: () => void) => {
   close();
 };
 
+const handleTambahDapur = (close: () => void) => {
+  emit("tambah-dapur");
+  close();
+};
+
+const handleRekomendasiDapur = (close: () => void) => {
+  emit("rekomendasi-dapur");
+  close();
+};
+
 const onProvinceChange = () => {
   // Reset dependent filters
   filters.value.city = "";
@@ -242,17 +272,17 @@ const onProvinceChange = () => {
   districts.value = [];
 };
 
-const onCityChange = () => {
-  // Reset dependent filters
-  filters.value.district = "";
+// const onCityChange = () => {
+//   // Reset dependent filters
+//   filters.value.district = "";
 
-  // Load districts based on selected city
-  if (filters.value.city) {
-    districts.value = schoolStore.getDistrictsByCity(filters.value.city);
-  } else {
-    districts.value = [];
-  }
-};
+//   // Load districts based on selected city
+//   if (filters.value.city) {
+//     districts.value = schoolStore.getDistrictsByCity(filters.value.city);
+//   } else {
+//     districts.value = [];
+//   }
+// };
 
 const clearFilter = (filterType: keyof Filters) => {
   filters.value[filterType] = "";

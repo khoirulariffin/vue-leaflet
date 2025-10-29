@@ -20,10 +20,10 @@ export const useSchoolStore = defineStore("school", () => {
     error.value = null;
 
     try {
-      console.log("window.location.origin", window.location.origin);
-
-      const baseURL = window.location.origin;
-      const response = await fetch(`${baseURL}/vue-leaflet/#/school_data.json`);
+      // const response = await fetch(
+      //   `${import.meta.env.BASE_URL}data_jabar.json`
+      // );
+      const response = await fetch(`/data_jabar.json`);
       if (!response.ok) {
         throw new Error("Failed to load school data");
       }

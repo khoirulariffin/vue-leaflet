@@ -8,7 +8,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/vue-leaflet/",
+  // base: "/vue-leaflet/",
   plugins: [vue(), vueDevTools(), tailwindcss()],
   resolve: {
     alias: {
