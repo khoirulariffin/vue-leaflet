@@ -4,7 +4,7 @@
       ref="map"
       v-model:zoom="mapConfig.zoom"
       :center="mapConfig.center"
-      :options="mapConfig.options"
+      :options="{ ...mapConfig.options, attributionControl: false }"
       @click="onMapClick"
     >
       <LTileLayer
@@ -150,6 +150,7 @@ import { useDapurStore } from "@/stores/dapur";
 import { useRouting } from "@/composable/useRouting";
 import type { School } from "@/types/school";
 import type { Dapur } from "@/types/dapur";
+import { useGlobalStore } from "@/stores/global";
 
 const { getTheme } = useTheme();
 const polygonStore = usePolygonStore();
@@ -158,6 +159,7 @@ const { polygons } = storeToRefs(polygonStore);
 const { handleMapClick, isClickModeActive } = useMapClick();
 const { previewMarkers } = useFormPreview();
 const { calculateRoute } = useRouting();
+const globalStore = useGlobalStore();
 
 const showForm = ref(false);
 const isDapurMode = ref(false);
@@ -214,6 +216,8 @@ const handleRecommendationCreate = async (data: {
     address: undefined,
     selectedSchools: data.selectedSchools,
   });
+
+  globalStore.setLoading(false);
 };
 
 const handleDapurSubmit = async (data: {
@@ -274,6 +278,14 @@ const handleDapurSubmit = async (data: {
     closeDapurForm();
 
     dapurStore.isCalculating = false;
+
+    // Auto zoom to dapur location
+    if (map.value?.leafletObject) {
+      map.value.leafletObject.flyTo([data.lat, data.lng], 15, {
+        duration: 1.5,
+        easeLinearity: 0.25,
+      });
+    }
 
     // Show success message
     // alert(

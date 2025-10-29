@@ -246,6 +246,7 @@ import {
   useRecommendation,
   type RecommendationResult,
 } from "@/composable/useRecommendation";
+import { useGlobalStore } from "@/stores/global";
 
 interface Props {
   isOpen: boolean;
@@ -262,6 +263,7 @@ const emit = defineEmits<{
 
 const schoolStore = useSchoolStore();
 const { calculateOptimalLocation } = useRecommendation();
+const globalStore = useGlobalStore();
 
 const searchQuery = ref("");
 const selectedSchools = ref<School[]>([]);
@@ -323,6 +325,8 @@ const calculateRecommendation = async () => {
 const createDapur = () => {
   if (!recommendation.value) return;
 
+  globalStore.setLoading(true);
+
   // Generate default name
   const defaultName = `Dapur Rekomendasi ${new Date().toLocaleString("id-ID", {
     day: "2-digit",
@@ -337,5 +341,11 @@ const createDapur = () => {
     selectedSchools: recommendation.value.schools,
     name: defaultName,
   });
+
+  // Reset form
+  selectedSchools.value = [];
+  recommendation.value = null;
+  step.value = 1;
+  searchQuery.value = "";
 };
 </script>

@@ -10,6 +10,14 @@ import L from "leaflet";
 import { useDapurStore } from "@/stores/dapur";
 import { storeToRefs } from "pinia";
 
+// Listen for delete dapur event
+const handleDeleteDapur = (event: CustomEvent) => {
+  const dapurId = event.detail;
+  if (confirm("Apakah Anda yakin ingin menghapus dapur ini?")) {
+    dapurStore.removeDapur(dapurId);
+  }
+};
+
 const mapObject = inject<Ref<L.Map | null>>("mapObject");
 const dapurStore = useDapurStore();
 const { dapurs } = storeToRefs(dapurStore);
@@ -105,6 +113,12 @@ const renderDapurs = () => {
           <p>Koordinat: ${dapur.lat.toFixed(6)}, ${dapur.lng.toFixed(6)}</p>
           <p class="mt-1">Target: ${dapur.targetSchools.length} sekolah</p>
         </div>
+        <button 
+          onclick="window.dispatchEvent(new CustomEvent('delete-dapur', { detail: '${dapur.id}' }))"
+          class="btn btn-error btn-xs mt-3 w-full"
+        >
+          🗑️ Hapus Dapur
+        </button>
       </div>
     `);
 
@@ -185,6 +199,7 @@ watch(
 
 onMounted(() => {
   renderDapurs();
+  window.addEventListener("delete-dapur", handleDeleteDapur as EventListener);
 });
 
 onUnmounted(() => {
@@ -206,6 +221,11 @@ onUnmounted(() => {
 
   markers.length = 0;
   routeLines.length = 0;
+
+  window.removeEventListener(
+    "delete-dapur",
+    handleDeleteDapur as EventListener
+  );
 });
 </script>
 

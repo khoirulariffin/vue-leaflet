@@ -1,6 +1,58 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "daisyui" {
   themes:
     light --default,
     dark --prefersdark;
+}
+
+/* ========================================
+   DESIGN SYSTEM - LIGHT MODE
+   High-contrast whites with vibrant refined accents
+   ======================================== */
+:root {
+  /* Foundation - Light neutrals */
+  --background: oklch(0.98 0.002 270); /* Near white */
+  --foreground: oklch(0.12 0.004 270); /* Deep grey text */
+  --card: oklch(1 0 0); /* Pure white */
+  --card-foreground: oklch(0.12 0.004 270);
+
+  /* Primary - Copper-orange accent */
+  --primary: oklch(0.62 0.12 45); /* #D97845 */
+  --primary-foreground: oklch(0.98 0.002 270);
+
+  /* Secondary & Muted */
+  --secondary: oklch(0.94 0.003 270);
+  --secondary-foreground: oklch(0.12 0.004 270);
+  --muted: oklch(0.96 0.003 270);
+  --muted-foreground: oklch(0.45 0.004 270);
+
+  /* Borders */
+  --border: oklch(0.88 0.003 270);
+  --input: oklch(0.88 0.003 270);
+}
+
+/* ========================================
+   DESIGN SYSTEM - DARK MODE
+   Deep neutral greys with copper-orange accent
+   ======================================== */
+.dark {
+  /* Foundation - Deep neutral greys */
+  --background: oklch(0.12 0.002 270); /* #1C1C1E */
+  --foreground: oklch(0.92 0.004 270); /* #E8E8EA */
+  --card: oklch(0.16 0.003 270); /* #242426 */
+  --card-foreground: oklch(0.92 0.004 270);
+
+  /* Primary - Copper-orange accent */
+  --primary: oklch(0.62 0.12 45); /* #D97845 */
+  --primary-foreground: oklch(0.98 0.002 270);
+
+  /* Secondary & Muted */
+  --secondary: oklch(0.2 0.003 270);
+  --secondary-foreground: oklch(0.92 0.004 270);
+  --muted: oklch(0.2 0.003 270);
+  --muted-foreground: oklch(0.6 0.004 270);
+
+  /* Borders */
+  --border: oklch(0.24 0.003 270);
+  --input: oklch(0.24 0.003 270);
 }

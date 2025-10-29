@@ -5,7 +5,7 @@
       position="bottom-right"
       width="md"
       trigger-text="☰ Menu"
-      custom-class="btn-primary"
+      custom-class="bg-[oklch(0.62_0.12_45)] hover:bg-[oklch(0.58_0.12_45)] text-white border-none"
     >
       <template #default="{ close }">
         <div class="p-4">

@@ -2,7 +2,7 @@
   <BasePopover
     position="bottom-right"
     width="md"
-    custom-class="btn-secondary btn-block"
+    custom-class="bg-[oklch(0.62_0.12_45)] hover:bg-[oklch(0.58_0.12_45)] text-white border-none"
   >
     <template #trigger>
       <svg
@@ -80,7 +80,7 @@
           </div>
 
           <!-- Show City Areas -->
-          <div class="form-control">
+          <!-- <div class="form-control">
             <label class="label cursor-pointer justify-start gap-3">
               <input
                 type="checkbox"
@@ -94,10 +94,10 @@
                 </p>
               </div>
             </label>
-          </div>
+          </div> -->
 
           <!-- Show District Areas -->
-          <div class="form-control">
+          <!-- <div class="form-control">
             <label class="label cursor-pointer justify-start gap-3">
               <input
                 type="checkbox"
@@ -111,7 +111,7 @@
                 </p>
               </div>
             </label>
-          </div>
+          </div> -->
 
           <!-- Reset Button -->
           <div class="pt-3 border-t border-base-300">
@@ -121,7 +121,7 @@
           </div>
 
           <!-- Info -->
-          <div class="alert alert-info py-2 text-xs">
+          <!-- <div class="alert alert-info py-2 text-xs">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -136,7 +136,7 @@
               ></path>
             </svg>
             <span>Area dibuat dari convex hull marker sekolah</span>
-          </div>
+          </div> -->
         </div>
       </div>
     </template>
